@@ -11,6 +11,8 @@
   <a href="https://www.npmjs.org/package/@ulisesgascon/simple-api"><img src="https://badgen.net/npm/license/@ulisesgascon/simple-api" alt="license"/></a>
   <a href="https://www.npmjs.org/package/@ulisesgascon/simple-api"><img src="https://badgen.net/npm/dt/@ulisesgascon/simple-api" alt="downloads"/></a>
   <a href="https://snyk.io/test/github/ulisesgascon/@ulisesgascon/simple-api"><img src="https://snyk.io/test/github/ulisesgascon/@ulisesgascon/simple-api/badge.svg" alt="Known Vulnerabilities"/></a>
+  <a href="https://deps.dev/project/github/ulisesgascon%2Fsimple-api"><img 
+  src="https://api.securityscorecards.dev/projects/github.com/UlisesGascon/simple-api/badge"></a>
 </p>
 
 # About
