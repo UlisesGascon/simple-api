@@ -4,8 +4,13 @@ const pinoHTTP = require('pino-http')
 const helmet = require('helmet')
 const compression = require('compression')
 const cors = require('cors')
-const { logger, getAllTodos, setCacheMiddleware, handleNotFoundTodoMiddleware } = require('./utils')
-const crypto = require('crypto');
+const {
+  logger,
+  getAllTodos,
+  setCacheMiddleware,
+  handleNotFoundTodoMiddleware
+} = require('./utils')
+const crypto = require('crypto')
 
 const app = express()
 
@@ -38,7 +43,6 @@ app.get('/v1/todos/:id', handleNotFoundTodoMiddleware, (req, res) => {
   logger.info(`Getting todo with id ${req.params.id}`)
   res.json(req.todo)
 })
-
 
 app.post('/v1/todos', (req, res) => {
   logger.info('Creating todo')

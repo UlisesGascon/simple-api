@@ -43,7 +43,7 @@ describe('POST /v1/todos', () => {
     const res = await request(server)
       .post('/v1/todos')
       .send({
-        title: 'New todo'      
+        title: 'New todo'
       })
     expect(res.statusCode).toBe(200)
     expect(res.body.id).toMatch(fixtures.uuidRegex)
