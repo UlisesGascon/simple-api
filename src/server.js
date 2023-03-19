@@ -5,6 +5,7 @@ const helmet = require('helmet')
 const validator = require('swagger-endpoint-validator')
 const compression = require('compression')
 const cors = require('cors')
+const { join } = require('path')
 const {
   logger,
   getAllTodos,
@@ -38,7 +39,7 @@ validator.init(app, {
   validateResponses: true,
   format: 'yaml',
   yaml: {
-    file: './src/syncapi.yaml'
+    file: join(__dirname, 'syncapi.yaml')
   }
 })
 
