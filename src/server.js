@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const pinoHTTP = require('pino-http')
 const helmet = require('helmet')
+const validator = require('swagger-endpoint-validator')
 const compression = require('compression')
 const cors = require('cors')
 const {
@@ -28,6 +29,18 @@ app.use(
   })
 )
 app.use(setCacheMiddleware)
+
+// Validation for API Endpoints
+validator.init(app, {
+  apiDocEndpoint: '/__/docs',
+  fileUploader: false,
+  validateRequests: true,
+  validateResponses: true,
+  format: 'yaml',
+  yaml: {
+    file: './src/syncapi.yaml'
+  }
+})
 
 // Routes
 app.get('/__/health', (req, res) => {
