@@ -1,0 +1,27 @@
+{
+  "name": "@ulisesgascon/simple-api",
+  "version": "1.0.0",
+  "description": "A very simple HTTP API to build fast prototypes",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UlisesGascon/simple-api.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "api-rest",
+    "fast-api-rest",
+    "prototype"
+  ],
+  "author": "Ulises Gascon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UlisesGascon/simple-api/issues"
+  },
+  "homepage": "https://github.com/UlisesGascon/simple-api#readme"
+}
