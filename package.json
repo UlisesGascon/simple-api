@@ -2,7 +2,7 @@
   "name": "@ulisesgascon/simple-api",
   "version": "1.0.0",
   "description": "A very simple HTTP API to build fast prototypes",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "bin": {
     "@ulisesgascon/simple-api": "./bin/index.js"
   },
