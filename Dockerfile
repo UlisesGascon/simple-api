@@ -1,12 +1,12 @@
 # Stage-1 dependencies
-FROM node:18.14.1 as dependencies
+FROM node:18.14.1@sha256:671b86a524e12beac53f6679d791dc8b73bff3a46edf4878343e82503cb33938 as dependencies
 WORKDIR /usr/src/app
 
 COPY package*.json ./
 RUN npm i --only=production
 
 # Stage-2 final image
-FROM node:18.14.1-alpine
+FROM node:18.14.1-alpine@sha256:e0a779479fca9cf43cae2852291bee70e730ae3ad27fea1211060bd344b696b8
 
 LABEL org.label-schema.name="simple-api" \
     org.label-schema.description="simple-api Docker image" \
