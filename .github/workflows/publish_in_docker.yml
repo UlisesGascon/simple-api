@@ -25,30 +25,30 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and push Docker image
     needs: build
-    
+
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set output
-      id: vars
-      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
-    - name: Check output
-      env:
-        RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-      run: |
-        echo $RELEASE_VERSION
-        echo ${{ steps.vars.outputs.tag }}
-    - name: docker login
-      env:
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
-    - name: Build the Docker image
-      env:
-        RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-      run: docker build . --file Dockerfile --tag ulisesgascon/simple-api:$RELEASE_VERSION --tag ulisesgascon/simple-api:latest
-      
-    - name: Docker Push
-      run: docker push --all-tags ulisesgascon/simple-api
+      - name: Check output
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ steps.vars.outputs.tag }}
+      - name: docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build the Docker image
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+        run: docker build . --file Dockerfile --tag ulisesgascon/simple-api:$RELEASE_VERSION --tag ulisesgascon/simple-api:latest
+
+      - name: Docker Push
+        run: docker push --all-tags ulisesgascon/simple-api

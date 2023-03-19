@@ -20,7 +20,7 @@ jobs:
       - run: npm run lint
       - run: npm run format
       - run: npm run test
-  
+
   publish-npm:
     name: Publish to NPM
     needs: build
