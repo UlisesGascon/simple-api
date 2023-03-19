@@ -2,11 +2,13 @@
   "name": "@ulisesgascon/simple-api",
   "version": "1.0.0",
   "description": "A very simple HTTP API to build fast prototypes",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "bin": {
     "@ulisesgascon/simple-api": "./bin/index.js"
   },
   "scripts": {
+    "dev": "node src/index.js | pino-pretty",
+    "start": "node src/index.js",
     "format:fix": "prettier-standard --format",
     "format": "prettier-standard --check",
     "lint": "standard",
