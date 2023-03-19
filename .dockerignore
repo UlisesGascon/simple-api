@@ -1,5 +1,2 @@
-.git/
-__tests__/
-bin/
-coverage/
-.github/
+# Ignore everything
+**
