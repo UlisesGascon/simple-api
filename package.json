@@ -7,6 +7,8 @@
     "@ulisesgascon/simple-api": "./bin/index.js"
   },
   "scripts": {
+    "dev": "node src/index.js | pino-pretty",
+    "start": "node src/index.js",
     "format:fix": "prettier-standard --format",
     "format": "prettier-standard --check",
     "lint": "standard",
