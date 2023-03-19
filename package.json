@@ -4,7 +4,9 @@
   "description": "A very simple HTTP API to build fast prototypes",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_ENV=test && jest --detectOpenHandles --forceExit  --verbose",
+    "test:coverage": "cross-env NODE_ENV=test && jest --detectOpenHandles --forceExit --verbose --coverage",
+    "test:watch": "cross-env NODE_ENV=test && jest --detectOpenHandles --forceExit --verbose --watchAll",
     "sample:generate": "node src/data/generate.js"
   },
   "repository": {
