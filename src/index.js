@@ -1,6 +1,8 @@
 const { logger } = require('./utils')
 
-const server = require('./server')
+const server = require('./server')({
+  swaggerEnabled: true
+})
 
 const port = process.env.PORT || 3000
 

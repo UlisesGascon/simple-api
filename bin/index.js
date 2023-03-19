@@ -2,7 +2,9 @@
 
 const { logger } = require('../src/utils')
 
-const app = require('../src/server')
+const app = require('../src/server')({
+  swaggerEnabled: true
+})
 
 const port = parseInt([process.argv[2]]) || 0
 
