@@ -4,6 +4,7 @@
   "description": "A very simple HTTP API to build fast prototypes",
   "main": "src/index.js",
   "scripts": {
+    "format": "prettier-standard --format",
     "lint": "standard",
     "lint:fix": "standard --fix",
     "test": "cross-env NODE_ENV=test && jest --detectOpenHandles --forceExit  --verbose",
