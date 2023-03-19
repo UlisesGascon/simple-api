@@ -1,0 +1,54 @@
+name: 🐳 Docker Release
+on:
+  release:
+    types:
+      - created
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 19.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js version ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format
+      - run: npm run test
+
+  publish-docker:
+    runs-on: ubuntu-latest
+    name: Build and push Docker image
+    needs: build
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set output
+      id: vars
+      run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+    - name: Check output
+      env:
+        RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+      run: |
+        echo $RELEASE_VERSION
+        echo ${{ steps.vars.outputs.tag }}
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
+    - name: Build the Docker image
+      env:
+        RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+      run: docker build . --file Dockerfile --tag ulisesgascon/simple-api:$RELEASE_VERSION --tag ulisesgascon/simple-api:latest
+      
+    - name: Docker Push
+      run: docker push --all-tags ulisesgascon/simple-api
