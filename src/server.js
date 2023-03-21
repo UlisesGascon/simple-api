@@ -4,14 +4,10 @@ const pinoHTTP = require('pino-http')
 const helmet = require('helmet')
 const validator = require('swagger-endpoint-validator')
 const compression = require('compression')
+const simpleCacheControlMiddleware = require('simple-cache-control-middleware')
 const cors = require('cors')
 const { join } = require('path')
-const {
-  logger,
-  getAllTodos,
-  setCacheMiddleware,
-  handleNotFoundTodoMiddleware
-} = require('./utils')
+const { logger, getAllTodos, handleNotFoundTodoMiddleware } = require('./utils')
 const crypto = require('crypto')
 
 const defaultSettings = {
@@ -35,7 +31,7 @@ const appInitialization = (config = {}) => {
       limit: '100kb'
     })
   )
-  app.use(setCacheMiddleware)
+  app.use(simpleCacheControlMiddleware())
 
   // Validation for API Endpoints
   if (settings.swaggerEnabled) {
