@@ -7,11 +7,7 @@ const compression = require('compression')
 const simpleCacheControlMiddleware = require('simple-cache-control-middleware')
 const cors = require('cors')
 const { join } = require('path')
-const {
-  logger,
-  getAllTodos,
-  handleNotFoundTodoMiddleware
-} = require('./utils')
+const { logger, getAllTodos, handleNotFoundTodoMiddleware } = require('./utils')
 const crypto = require('crypto')
 
 const defaultSettings = {
