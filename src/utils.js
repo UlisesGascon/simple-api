@@ -9,16 +9,6 @@ const logger = pino({
 const getAllTodos = () => todos
 const getTodoById = id => todos.find(todo => todo.id === id)
 
-const setCacheMiddleware = (req, res, next) => {
-  // @SEE: https://regbrain.com/article/cache-headers-express-js
-  const FIVE_MINUTES = 60 * 5
-  res.set(
-    'Cache-control',
-    req.method === 'GET' ? `public, max-age=${FIVE_MINUTES}` : 'no-store'
-  )
-  next()
-}
-
 const handleNotFoundTodoMiddleware = (req, res, next) => {
   const todo = getTodoById(req.params.id)
 
@@ -32,7 +22,6 @@ const handleNotFoundTodoMiddleware = (req, res, next) => {
 
 module.exports = {
   logger,
-  setCacheMiddleware,
   handleNotFoundTodoMiddleware,
   getAllTodos,
   getTodoById
