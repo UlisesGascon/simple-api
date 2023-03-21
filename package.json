@@ -59,7 +59,7 @@
     "helmet": "6.0.1",
     "pino": "8.11.0",
     "pino-http": "8.3.3",
-    "simple-cache-control-middleware": "^1.0.0",
+    "simple-cache-control-middleware": "1.0.0",
     "swagger-endpoint-validator": "3.0.2"
   }
 }
