@@ -45,10 +45,12 @@ jobs:
         with:
           node-version: '18.0.0'
           registry-url: 'https://registry.npmjs.org'
+      - name: Update npm to latest version available
+        run: npm install -g npm
       - name: Run npm install ci
         run: npm ci
       - name: Publish package
-        run: npm publish --ignore-scripts --access public
+        run: npm publish --provenance --ignore-scripts --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
