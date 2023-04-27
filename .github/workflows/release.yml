@@ -1,11 +1,8 @@
-name: 🐳 Docker Release
+name: 📦 Release to end users
 on:
-  workflow_run:
-    workflows: ['🚀 NPM Release']
-    branches: [main]
+  release:
     types:
-      - completed
-
+      - created
 permissions:
   contents: read
 
@@ -32,10 +29,33 @@ jobs:
       - run: npm run format
       - run: npm run test
 
+  publish-npm:
+    name: 🚀 NPM Release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@1f99358870fe1c846a3ccba386cc2b2246836776 # v2.2.1
+        with:
+          egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
+      - uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f # v3.4.0
+      - name: Build on Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
+        with:
+          node-version: '18.0.0'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Run npm install ci
+        run: npm ci
+      - name: Publish package
+        run: npm publish --ignore-scripts --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
   publish-docker:
     runs-on: ubuntu-latest
-    name: Build and push Docker image
-    needs: build
+    name: 🐳 Docker Release
+    needs: publish-npm
 
     steps:
       - name: Harden Runner
@@ -68,3 +88,4 @@ jobs:
 
       - name: Docker Push
         run: docker push --all-tags ulisesgascon/simple-api
+
