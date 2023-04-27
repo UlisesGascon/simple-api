@@ -88,4 +88,3 @@ jobs:
 
       - name: Docker Push
         run: docker push --all-tags ulisesgascon/simple-api
-
