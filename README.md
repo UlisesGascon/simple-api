@@ -72,9 +72,9 @@ Using `@ulisesgascon/simple-api` in your project:
 const appInitialization = require('@UlisesGascon/simple-api')
 
 ;(async () => {
-const app = await appInitialization()
+  const app = await appInitialization()
 
-app.listen(3000, () => console.log(`Server listening on port 3000!`))
+  app.listen(3000, () => console.log(`Server listening on port 3000!`))
 })()
 ```
 
