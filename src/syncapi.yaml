@@ -10,7 +10,7 @@ tags:
     description: Everything about todos
 
 paths:
-  /v1/todos:
+  /v1/todo:
     post:
       tags:
         - todo
@@ -76,7 +76,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Todo'
+              $ref: '#/components/schemas/TodoUpdate'
       responses:
         '200':
           description: Todo updated
@@ -221,12 +221,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    TodoUpdate:
+      type: object
+      properties:
+        title:
+          type: string
+        completed:
+          type: boolean
+      required:
+        - title
+        - completed
     TodoPatch:
       type: object
       properties:
-        id:
-          type: string
-          pattern: '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$'
         title:
           type: string
         completed:

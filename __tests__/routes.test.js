@@ -37,35 +37,35 @@ describe('GET /__/health', () => {
   })
 })
 
-describe('GET /v1/todos', () => {
+describe('GET /v1/todo', () => {
   it('should return all todos', async () => {
-    const res = await request(serverWithSwagger).get('/v1/todos')
+    const res = await request(serverWithSwagger).get('/v1/todo')
     expect(res.statusCode).toEqual(200)
     expect(res.body).toEqual(getAllTodos())
   })
 })
 
-describe('GET /v1/todos/:id', () => {
+describe('GET /v1/todo/:id', () => {
   it('should return a todo', async () => {
     const id = getAllTodos()[0].id
-    const res = await request(serverWithSwagger).get(`/v1/todos/${id}`)
+    const res = await request(serverWithSwagger).get(`/v1/todo/${id}`)
     expect(res.statusCode).toEqual(200)
     expect(res.body).toEqual(getTodoById(id))
   })
 
   it('should return 404 if todo not found', async () => {
     const res = await request(serverWithSwagger).get(
-      `/v1/todos/${fixtures.unusedId}`
+      `/v1/todo/${fixtures.unusedId}`
     )
     expect(res.statusCode).toEqual(404)
     expect(res.body).toEqual({ message: 'Todo not found' })
   })
 })
 
-describe('POST /v1/todos', () => {
+describe('POST /v1/todo', () => {
   it('should create a todo', async () => {
     const res = await request(serverWithSwagger)
-      .post('/v1/todos')
+      .post('/v1/todo')
       .send({
         title: 'New todo'
       })
@@ -76,25 +76,24 @@ describe('POST /v1/todos', () => {
   })
 })
 
-describe('PUT /v1/todos/:id', () => {
+describe('PUT /v1/todo/:id', () => {
   it('should update a todo', async () => {
     const id = getAllTodos()[0].id
     const res = await request(serverWithSwagger)
-      .put(`/v1/todos/${id}`)
+      .put(`/v1/todo/${id}`)
       .send({
-        id: fixtures.unusedId,
         title: 'Updated todo',
         completed: true
       })
     expect(res.statusCode).toEqual(200)
-    expect(res.body.id).toBe(fixtures.unusedId)
+    expect(res.body.id).toBe(id)
     expect(res.body.title).toBe('Updated todo')
     expect(res.body.completed).toBe(true)
   })
 
   it('should return 404 if todo not found', async () => {
     const res = await request(serverWithSwagger)
-      .put(`/v1/todos/${fixtures.unusedId}`)
+      .put(`/v1/todo/${fixtures.unusedId}`)
       .send({
         title: 'Updated todo',
         completed: true
@@ -104,12 +103,12 @@ describe('PUT /v1/todos/:id', () => {
   })
 })
 
-describe('PATCH /v1/todos/:id', () => {
+describe('PATCH /v1/todo/:id', () => {
   it('should update a todo', async () => {
     const { id, completed } = getAllTodos()[0]
 
     const res = await request(serverWithSwagger)
-      .patch(`/v1/todos/${id}`)
+      .patch(`/v1/todo/${id}`)
       .send({
         title: 'Updated todo'
       })
@@ -122,7 +121,7 @@ describe('PATCH /v1/todos/:id', () => {
 
   it('should return 404 if todo not found', async () => {
     const res = await request(serverWithSwagger)
-      .patch(`/v1/todos/${fixtures.unusedId}`)
+      .patch(`/v1/todo/${fixtures.unusedId}`)
       .send({
         title: 'Updated todo',
         completed: true
@@ -132,10 +131,10 @@ describe('PATCH /v1/todos/:id', () => {
   })
 })
 
-describe('DELETE /v1/todos/:id', () => {
+describe('DELETE /v1/todo/:id', () => {
   it('should delete a todo', async () => {
     const id = getAllTodos()[0].id
-    const res = await request(serverWithSwagger).delete(`/v1/todos/${id}`)
+    const res = await request(serverWithSwagger).delete(`/v1/todo/${id}`)
 
     expect(res.statusCode).toEqual(200)
     expect(res.body.id).toBe(id)
@@ -143,7 +142,7 @@ describe('DELETE /v1/todos/:id', () => {
 
   it('should return 404 if todo not found', async () => {
     const res = await request(serverWithSwagger).delete(
-      `/v1/todos/${fixtures.unusedId}`
+      `/v1/todo/${fixtures.unusedId}`
     )
     expect(res.statusCode).toEqual(404)
     expect(res.body).toEqual({ message: 'Todo not found' })

@@ -39,8 +39,8 @@ Endpoints:
 
 - `GET /__/health` check health
 - `GET /__/docs` Swagger documentation for all the available endpoints
-- `GET /v1/todos` List all TODOS
-- `POST /v1/todos` Create a TODO
+- `GET /v1/todo` List all TODOS
+- `POST /v1/todo` Create a TODO
 - `GET /v1/todo/{id}` Get a specific TODO
 - `PUT /v1/todo/{id}` Update a specific TODO
 - `PATCH /v1/todo/{id}` PAtch a specific TODO property
