@@ -1,7 +1,7 @@
 const { logger } = require('./utils')
 const server = require('./server')
 
-async function start() {
+async function start () {
   const app = await server({
     swaggerEnabled: true
   })
