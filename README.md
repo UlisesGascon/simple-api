@@ -69,9 +69,13 @@ npx @ulisesgascon/simple-api 3000
 Using `@ulisesgascon/simple-api` in your project:
 
 ```js
-const app = require('@UlisesGascon/simple-api')()
+const appInitialization = require('@UlisesGascon/simple-api')
 
-app.listen(3000, () => console.log(`Server listening on port 3000!`))
+;(async () => {
+  const app = await appInitialization()
+
+  app.listen(3000, () => console.log(`Server listening on port 3000!`))
+})()
 ```
 
 You can use `app` to extend the routes as it is the [Typical express application](https://expressjs.com/en/4x/api.html#app)
@@ -79,11 +83,15 @@ You can use `app` to extend the routes as it is the [Typical express application
 **PRO TIP** By default Swagger validator will be disabled as adding new routes can be complicated, but you can enable it:
 
 ```js
-const app = require('@UlisesGascon/simple-api')({
-  swaggerEnabled: true
-})
+const appInitialization = require('@UlisesGascon/simple-api')
 
-app.listen(3000, () => console.log(`Server listening on port 3000!`))
+;(async () => {
+  const app = await appInitialization({
+    swaggerEnabled: true
+  })
+
+  app.listen(3000, () => console.log(`Server listening on port 3000!`))
+})()
 ```
 
 ## Docker Version 🐳

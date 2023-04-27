@@ -13,7 +13,7 @@ const crypto = require('crypto')
 const defaultSettings = {
   swaggerEnabled: false
 }
-const appInitialization = (config = {}) => {
+const appInitialization = async (config = {}) => {
   const settings = { ...defaultSettings, ...config }
   logger.info(`Settings: ${JSON.stringify(settings)}`)
   const app = express()
@@ -36,7 +36,7 @@ const appInitialization = (config = {}) => {
   // Validation for API Endpoints
   if (settings.swaggerEnabled) {
     logger.info('Swagger enabled')
-    validator.init(app, {
+    await validator.init(app, {
       apiDocEndpoint: '/__/docs',
       fileUploader: false,
       validateRequests: true,

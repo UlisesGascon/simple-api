@@ -1,12 +1,20 @@
 const request = require('supertest')
-const serverWithSwagger = require('../src/server')({ swaggerEnabled: true })
-const serverWithoutSwagger = require('../src/server')({ swaggerEnabled: false })
+const appInitialization = require('../src/server')
+
 const { getAllTodos, getTodoById } = require('../src/utils')
 
 const fixtures = {
   uuidRegex: /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/g,
   unusedId: '83af1f72-db1c-4e2d-bd50-ef75f178bac9'
 }
+
+let serverWithSwagger
+let serverWithoutSwagger
+
+beforeAll(async () => {
+  serverWithSwagger = await appInitialization({ swaggerEnabled: true })
+  serverWithoutSwagger = await appInitialization({ swaggerEnabled: false })
+})
 
 describe('GET /__/docs', () => {
   it('should return swagger docs', async () => {
