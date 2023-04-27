@@ -53,17 +53,17 @@ const appInitialization = async (config = {}) => {
     res.json({ status: 'UP' })
   })
 
-  app.get('/v1/todos', (req, res) => {
+  app.get('/v1/todo', (req, res) => {
     logger.info('Getting all todos')
     res.json(getAllTodos())
   })
 
-  app.get('/v1/todos/:id', handleNotFoundTodoMiddleware, (req, res) => {
+  app.get('/v1/todo/:id', handleNotFoundTodoMiddleware, (req, res) => {
     logger.info(`Getting todo with id ${req.params.id}`)
     res.json(req.todo)
   })
 
-  app.post('/v1/todos', (req, res) => {
+  app.post('/v1/todo', (req, res) => {
     logger.info('Creating todo')
     res.json({
       title: req.body.title,
@@ -72,17 +72,17 @@ const appInitialization = async (config = {}) => {
     })
   })
 
-  app.put('/v1/todos/:id', handleNotFoundTodoMiddleware, (req, res) => {
+  app.put('/v1/todo/:id', handleNotFoundTodoMiddleware, (req, res) => {
     logger.info(`Updating todo with id ${req.params.id}`)
-    res.json(req.body)
+    res.json({ ...req.todo, ...req.body })
   })
 
-  app.delete('/v1/todos/:id', handleNotFoundTodoMiddleware, (req, res) => {
+  app.delete('/v1/todo/:id', handleNotFoundTodoMiddleware, (req, res) => {
     logger.info(`Deleting todo with id ${req.params.id}`)
     res.json(req.todo)
   })
 
-  app.patch('/v1/todos/:id', handleNotFoundTodoMiddleware, (req, res) => {
+  app.patch('/v1/todo/:id', handleNotFoundTodoMiddleware, (req, res) => {
     logger.info(`Updating todo with id ${req.params.id}`)
     res.json({ ...req.todo, ...req.body })
   })
