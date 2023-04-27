@@ -1,8 +1,11 @@
 name: 🐳 Docker Release
 on:
-  release:
+  workflow_run:
+    workflows: ['🚀 NPM Release']
+    branches: [main]
     types:
-      - created
+      - completed
+
 permissions:
   contents: read
 
