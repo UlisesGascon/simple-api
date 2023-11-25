@@ -1,6 +1,6 @@
 {
   "name": "@ulisesgascon/simple-api",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A very simple HTTP API to build fast prototypes",
   "main": "src/server.js",
   "bin": {
