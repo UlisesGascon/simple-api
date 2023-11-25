@@ -20,4 +20,4 @@ WORKDIR /home/node/simple-api
 # Install from npmjs.com
 RUN npm install --only=prod -g @ulisesgascon/simple-api
 
-CMD ["sh", "-c", "npx @ulisesgascon/simple-api@3.0.1 3000"]
+CMD ["sh", "-c", "npx @ulisesgascon/simple-api@4.0.0 3000"]
