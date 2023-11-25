@@ -44,7 +44,7 @@ jobs:
       - name: Build on Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # v3.6.0
         with:
-          node-version: '18.0.0'
+          node-version: '20.10.0'
           registry-url: 'https://registry.npmjs.org'
       - name: Update npm to latest version available
         run: npm install -g npm
