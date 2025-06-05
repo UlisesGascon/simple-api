@@ -60,6 +60,6 @@
     "pino": "8.11.0",
     "pino-http": "8.3.3",
     "simple-cache-control-middleware": "1.0.0",
-    "swagger-endpoint-validator": "3.0.2"
+    "swagger-endpoint-validator": "4.1.0"
   }
 }
